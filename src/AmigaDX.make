@@ -28,14 +28,12 @@ ifeq ($(config),debuglib64)
   CPPFLAGS  += -MMD -MP $(DEFINES) $(INCLUDES)
   CFLAGS    += $(CPPFLAGS) $(ARCH) -Wall -g -m64
   CXXFLAGS  += $(CFLAGS) 
-  LDFLAGS   += -shared -Wl,--out-implib="lib/debug/libAmigaDX.wcx64" -m64 -L/usr/lib64 dialog.o -L../lib/adflib/lib/debug -L../lib/xdmslib/lib/debug -L../lib/zlib/lib/debug
+  LDFLAGS   += -shared -Wl,--out-implib="lib/debug/libAmigaDX.wcx64" -m64 -L/usr/lib64 -L../lib/adflib/lib/debug -L../lib/xdmslib/lib/debug -L../lib/zlib/lib/debug
   LIBS      += -lzlib -ladflib -lxdmslib
   RESFLAGS  += $(DEFINES) $(INCLUDES) 
   LDDEPS    += 
   LINKCMD    = $(CC) -o $(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) $(ARCH) $(LIBS)
   define PREBUILDCMDS
-	@echo Running pre-build commands
-	windres -i dialog.rc -o dialog.o -v
   endef
   define PRELINKCMDS
   endef
@@ -54,14 +52,12 @@ ifeq ($(config),releaselib64)
   CPPFLAGS  += -MMD -MP $(DEFINES) $(INCLUDES)
   CFLAGS    += $(CPPFLAGS) $(ARCH) -Wall -O3 -m64
   CXXFLAGS  += $(CFLAGS) 
-  LDFLAGS   += -s -shared -Wl,--out-implib="lib/release/libAmigaDX.wcx64" -m64 -L/usr/lib64 dialog.o -L../lib/adflib/lib/release -L../lib/xdmslib/lib/release -L../lib/zlib/lib/release
+  LDFLAGS   += -s -shared -Wl,--out-implib="lib/release/libAmigaDX.wcx64" -m64 -L/usr/lib64 -L../lib/adflib/lib/release -L../lib/xdmslib/lib/release -L../lib/zlib/lib/release
   LIBS      += -lzlib -ladflib -lxdmslib
   RESFLAGS  += $(DEFINES) $(INCLUDES) 
   LDDEPS    += 
   LINKCMD    = $(CC) -o $(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) $(ARCH) $(LIBS)
   define PREBUILDCMDS
-	@echo Running pre-build commands
-	windres -i dialog.rc -o dialog.o -v
   endef
   define PRELINKCMDS
   endef
@@ -80,14 +76,12 @@ ifeq ($(config),debuglib32)
   CPPFLAGS  += -MMD -MP $(DEFINES) $(INCLUDES)
   CFLAGS    += $(CPPFLAGS) $(ARCH) -Wall -g -m32
   CXXFLAGS  += $(CFLAGS) 
-  LDFLAGS   += -shared -Wl,--out-implib="lib/debug/libAmigaDX.wcx" -m32 -L/usr/lib32 dialog.o -L../lib/adflib/lib/debug -L../lib/xdmslib/lib/debug -L../lib/zlib/lib/debug
+  LDFLAGS   += -shared -Wl,--out-implib="lib/debug/libAmigaDX.wcx" -m32 -L/usr/lib32 -L../lib/adflib/lib/debug -L../lib/xdmslib/lib/debug -L../lib/zlib/lib/debug
   LIBS      += -lzlib -ladflib -lxdmslib
   RESFLAGS  += $(DEFINES) $(INCLUDES) 
   LDDEPS    += 
   LINKCMD    = $(CC) -o $(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) $(ARCH) $(LIBS)
   define PREBUILDCMDS
-	@echo Running pre-build commands
-	windres -i dialog.rc -o dialog.o -v
   endef
   define PRELINKCMDS
   endef
@@ -106,14 +100,12 @@ ifeq ($(config),releaselib32)
   CPPFLAGS  += -MMD -MP $(DEFINES) $(INCLUDES)
   CFLAGS    += $(CPPFLAGS) $(ARCH) -Wall -O3 -m32
   CXXFLAGS  += $(CFLAGS) 
-  LDFLAGS   += -s -shared -Wl,--out-implib="lib/release/libAmigaDX.wcx" -m32 -L/usr/lib32 dialog.o -L../lib/adflib/lib/release -L../lib/xdmslib/lib/release -L../lib/zlib/lib/release
+  LDFLAGS   += -s -shared -Wl,--out-implib="lib/release/libAmigaDX.wcx" -m32 -L/usr/lib32 -L../lib/adflib/lib/release -L../lib/xdmslib/lib/release -L../lib/zlib/lib/release
   LIBS      += -lzlib -ladflib -lxdmslib
   RESFLAGS  += $(DEFINES) $(INCLUDES) 
   LDDEPS    += 
   LINKCMD    = $(CC) -o $(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) $(ARCH) $(LIBS)
   define PREBUILDCMDS
-	@echo Running pre-build commands
-	windres -i dialog.rc -o dialog.o -v
   endef
   define PRELINKCMDS
   endef
@@ -131,6 +123,7 @@ OBJECTS := \
 	$(OBJDIR)/wcxapi.o \
 
 RESOURCES := \
+	$(OBJDIR)/dialog.res \
 
 SHELLTYPE := msdos
 ifeq (,$(ComSpec)$(COMSPEC))
@@ -204,5 +197,8 @@ $(OBJDIR)/support.o: support.c
 $(OBJDIR)/wcxapi.o: wcxapi.c
 	@echo $(notdir $<)
 	$(SILENT) $(CC) $(CFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/dialog.res: dialog.rc
+	@echo $(notdir $<)
+	$(SILENT) windres $< -O coff -o "$@" $(RESFLAGS)
 
 -include $(OBJECTS:%.o=%.d)

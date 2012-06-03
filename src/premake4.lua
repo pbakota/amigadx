@@ -5,10 +5,8 @@ platforms {"x64","x32"}
 project "AmigaDX"
     language "C"
     kind "SharedLib"
-    files {"*.c"}
+    files {"*.c", "*.rc"}
     links {"zlib","adflib","xdmslib"}
-    linkoptions {"dialog.o"}
-    prebuildcommands { "windres -i dialog.rc -o dialog.o -v" }
     includedirs { "../lib/adflib", "../lib/xdmslib", "../lib/zlib" }
     targetdir "../install"
 

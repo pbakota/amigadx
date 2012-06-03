@@ -1,4 +1,9 @@
 obj/
 *.zip
 *.tgz
+install/*.wcx*
+lib/adflib/lib
+lib/xdmslib/lib
+lib/zlib/lib
+src/lib
 
