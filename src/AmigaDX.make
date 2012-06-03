@@ -23,7 +23,7 @@ ifeq ($(config),debuglib64)
   OBJDIR     = obj/x64/DebugLib
   TARGETDIR  = lib/debug
   TARGET     = $(TARGETDIR)/AmigaDX.wcx64
-  DEFINES   += -DDEBUG
+  DEFINES   += -DWCX_PLUGIN_EXPORTS -DDEBUG
   INCLUDES  += -I../lib/adflib -I../lib/xdmslib -I../lib/zlib
   CPPFLAGS  += -MMD -MP $(DEFINES) $(INCLUDES)
   CFLAGS    += $(CPPFLAGS) $(ARCH) -Wall -g -m64
@@ -47,7 +47,7 @@ ifeq ($(config),releaselib64)
   OBJDIR     = obj/x64/ReleaseLib
   TARGETDIR  = lib/release
   TARGET     = $(TARGETDIR)/AmigaDX.wcx64
-  DEFINES   += -DNDEBUG
+  DEFINES   += -DWCX_PLUGIN_EXPORTS -DNDEBUG
   INCLUDES  += -I../lib/adflib -I../lib/xdmslib -I../lib/zlib
   CPPFLAGS  += -MMD -MP $(DEFINES) $(INCLUDES)
   CFLAGS    += $(CPPFLAGS) $(ARCH) -Wall -O3 -m64
@@ -71,7 +71,7 @@ ifeq ($(config),debuglib32)
   OBJDIR     = obj/x32/DebugLib
   TARGETDIR  = lib/debug
   TARGET     = $(TARGETDIR)/AmigaDX.wcx
-  DEFINES   += -DDEBUG
+  DEFINES   += -DWCX_PLUGIN_EXPORTS -DDEBUG
   INCLUDES  += -I../lib/adflib -I../lib/xdmslib -I../lib/zlib
   CPPFLAGS  += -MMD -MP $(DEFINES) $(INCLUDES)
   CFLAGS    += $(CPPFLAGS) $(ARCH) -Wall -g -m32
@@ -95,7 +95,7 @@ ifeq ($(config),releaselib32)
   OBJDIR     = obj/x32/ReleaseLib
   TARGETDIR  = lib/release
   TARGET     = $(TARGETDIR)/AmigaDX.wcx
-  DEFINES   += -DNDEBUG
+  DEFINES   += -DWCX_PLUGIN_EXPORTS -DNDEBUG
   INCLUDES  += -I../lib/adflib -I../lib/xdmslib -I../lib/zlib
   CPPFLAGS  += -MMD -MP $(DEFINES) $(INCLUDES)
   CFLAGS    += $(CPPFLAGS) $(ARCH) -Wall -O3 -m32

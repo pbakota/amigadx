@@ -9,6 +9,7 @@ project "AmigaDX"
     links {"zlib","adflib","xdmslib"}
     includedirs { "../lib/adflib", "../lib/xdmslib", "../lib/zlib" }
     targetdir "../install"
+    defines {"WCX_PLUGIN_EXPORTS"}
 
 configuration "x64"
     targetextension ".wcx64"
