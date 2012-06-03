@@ -1,0 +1,6 @@
+[plugininstall]
+description=Plugin for modify/extract/view files in popular WinUAE disk image files
+type=wcx
+file=AmigaDX.wcx
+defaultdir=AmigaDX
+defaultextension=adf,dms,hdf,adz
