@@ -139,7 +139,8 @@ RETCODE adfReadBitmap(struct Volume* vol, int32_t nBlock, struct bRootBlock* roo
 
 	j=0; i=0;
     /* bitmap pointers in rootblock : 0 <= i <BM_SIZE */
-	while(i<BM_SIZE && root->bmPages[i]!=0) {
+/*	while(i<BM_SIZE && root->bmPages[i]!=0) {*/
+	while(i<mapSize && root->bmPages[i]!=0) {
 		vol->bitmapBlocks[j] = nSect = root->bmPages[i];
         if ( !isSectNumValid(vol,nSect) ) {
 			(*adfEnv.wFct)("adfReadBitmap : sector out of range");
