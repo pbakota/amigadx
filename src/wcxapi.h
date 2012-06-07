@@ -24,6 +24,10 @@ extern "C" {
 #include <windows.h>
 #include "wcxhead.h"
 
+#ifdef STDCALL
+#undef STDCALL
+#endif
+
 #ifdef AMIGADX_EXPORTS
 #define WCX_API __declspec(dllexport)
 #define STDCALL __stdcall

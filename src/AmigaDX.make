@@ -87,7 +87,7 @@ ifeq ($(config),debuglib32)
   endef
   define POSTBUILDCMDS
 	@echo Running post-build commands
-	cp lib/debug/AmigaDX.wcx64 ../install
+	cp lib/debug/AmigaDX.wcx ../install
   endef
 endif
 
@@ -111,7 +111,7 @@ ifeq ($(config),releaselib32)
   endef
   define POSTBUILDCMDS
 	@echo Running post-build commands
-	cp lib/release/AmigaDX.wcx64 ../install
+	cp lib/release/AmigaDX.wcx ../install
   endef
 endif
 
